@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>REX Clone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="css/chat.css" rel="stylesheet"/>
+  <style>
+   body {
+     font-family: 'Roboto', sans-serif;
+   }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow-md relative z-10">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+     <h1 class="text-3xl font-bold text-blue-500">REX</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+     <div class="relative">
+      <a class="text-gray-700 hover:text-blue-500 cursor-pointer" href="#" id="sign-in-button">Sign in</a>
+      <div class="absolute hidden bg-white shadow-md rounded mt-2 z-20" id="signin-dropdown">
+       <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="customer-login.html">Customer Login</a>
+       <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="vendor-login.html">Vendor Login</a>
+      </div>
+     </div>
+     <a class="text-gray-700 hover:text-blue-500" href="support.html">Support</a>
+     <a class="text-gray-700 hover:text-blue-500" href="blog.html">Blog</a>
+    </div>
+   </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative">
+   <img alt="Beautiful modern home exterior" class="w-full h-96 object-cover" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&h=600"/>
+   <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="text-center text-white">
+     <h1 class="text-4xl font-bold mb-4">Choose Your Desired Service</h1>
+     <div class="bg-white p-4 rounded-lg shadow-md max-w-3xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+       <button class="bg-blue-500 text-white px-4 py-2 rounded" id="buy-home-button">Buy a Home</button>
+       <button class="bg-blue-500 text-white px-4 py-2 rounded" id="sell-house-button">Sell a Home</button>
+       <div class="relative">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" id="renting-button">Renting</button>
+        <div class="absolute hidden bg-white shadow-md rounded mt-2 z-20" id="renting-dropdown">
+         <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="#" id="find-rental-button">Find a Rental</a>
+         <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="#" id="rent-home-button">Rent Your Home</a>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Buy Services Section -->
+  <section class="container mx-auto px-4 py-16" id="services-section">
+   <h2 class="text-3xl font-bold text-center mb-8">Select Services for Buying Your Home</h2>
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Realtor</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Mortgage Agent</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Credit Counselor</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Financial Advisor</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Real Estate Lawyer</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Insurance Agent</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Home Inspector</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Property Appraiser</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Title Company</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Land Surveyor</label>
+   </div>
+   <div class="text-center">
+    <button class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors" id="buy-services-submit">Get a Quote</button>
+   </div>
+   <div id="buy-packages" class="mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+     <div class="border rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-bold mb-4">Basic Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Essential services for budget-conscious buyers</p>
+       <ul class="list-disc list-inside mb-4" id="basic-package-vendors"></ul>
+      </div>
+     </div>
+     <div class="border rounded-lg p-6 shadow-md bg-blue-50">
+      <h3 class="text-xl font-bold mb-4">Premium Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Comprehensive coverage for peace of mind</p>
+       <ul class="list-disc list-inside mb-4" id="premium-package-vendors"></ul>
+      </div>
+     </div>
+     <div class="border rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-bold mb-4">Custom Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Tailored to your specific needs</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>Choose your services</li>
+        <li>Flexible support</li>
+        <li>Custom documentation</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Sell Services Section -->
+  <section class="container mx-auto px-4 py-16 hidden" id="sell-services-section">
+   <h2 class="text-3xl font-bold text-center mb-8">Select Services for Selling Your Home</h2>
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Realtor</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Home Stager</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Photographer</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Home Inspector</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Real Estate Lawyer</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Title Company</label>
+   </div>
+   <div class="text-center">
+    <button class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors" id="sell-services-submit">Get a Quote</button>
+   </div>
+   <div id="sell-packages" class="hidden mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+     <div class="border rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-bold mb-4">Basic Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Essential services for quick sales</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>Core services only</li>
+        <li>Standard support</li>
+        <li>Basic documentation</li>
+       </ul>
+      </div>
+     </div>
+     <div class="border rounded-lg p-6 shadow-md bg-blue-50">
+      <h3 class="text-xl font-bold mb-4">Premium Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Comprehensive coverage for maximum value</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>All essential services</li>
+        <li>Priority support</li>
+        <li>Complete documentation</li>
+       </ul>
+      </div>
+     </div>
+     <div class="border rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-bold mb-4">Custom Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Tailored to your specific needs</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>Choose your services</li>
+        <li>Flexible support</li>
+        <li>Custom documentation</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Rental Services Section -->
+  <section class="container mx-auto px-4 py-16 hidden" id="rental-services-section">
+   <h2 class="text-3xl font-bold text-center mb-8">Select Services for Finding Your Rental</h2>
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Real Estate Agent</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Credit Check</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Rental Insurance</label>
+    <label class="flex items-center"><input class="mr-2" type="checkbox"/>Moving Service</label>
+   </div>
+   <div class="text-center">
+    <button class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors" id="rental-services-submit">Get a Quote</button>
+   </div>
+   <div id="rental-packages" class="hidden mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+     <div class="border rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-bold mb-4">Basic Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Essential services for renters</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>Core services only</li>
+        <li>Standard support</li>
+        <li>Basic documentation</li>
+       </ul>
+      </div>
+     </div>
+     <div class="border rounded-lg p-6 shadow-md bg-blue-50">
+      <h3 class="text-xl font-bold mb-4">Premium Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Comprehensive coverage for peace of mind</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>All essential services</li>
+        <li>Priority support</li>
+        <li>Complete documentation</li>
+       </ul>
+      </div>
+     </div>
+     <div class="border rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-bold mb-4">Custom Package</h3>
+      <div class="text-gray-600">
+       <p class="mb-4">Tailored to your specific needs</p>
+       <ul class="list-disc list-inside mb-4">
+        <li>Choose your services</li>
+        <li>Flexible support</li>
+        <li>Custom documentation</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Real Estate News -->
+  <section class="container mx-auto px-4 py-16">
+   <h2 class="text-3xl font-bold text-center mb-8">Real Estate News</h2>
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <a href="blog.html#market-trends" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+     <img alt="Market trends" class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=400&h=300"/>
+     <div class="p-4">
+      <h3 class="text-xl font-bold mb-2">2025 Market Trends</h3>
+      <p class="text-gray-600">Housing market shows signs of stability with mortgage rates expected to decrease. Experts predict increased inventory and more opportunities for first-time buyers.</p>
+      <p class="text-blue-500 mt-4">Read more →</p>
+     </div>
+    </a>
+    <a href="blog.html#top-cities" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+     <img alt="Best cities" class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=400&h=300"/>
+     <div class="p-4">
+      <h3 class="text-xl font-bold mb-2">Top Cities for 2025</h3>
+      <p class="text-gray-600">Austin, Raleigh, and Denver lead the pack for best places to live, offering strong job markets, quality of life, and sustainable property appreciation.</p>
+      <p class="text-blue-500 mt-4">Read more →</p>
+     </div>
+    </a>
+    <a href="blog.html#investment-insights" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+     <img alt="Investment tips" class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?auto=format&fit=crop&w=400&h=300"/>
+     <div class="p-4">
+      <h3 class="text-xl font-bold mb-2">Investment Insights</h3>
+      <p class="text-gray-600">Emerging neighborhoods and suburban areas near tech hubs show promising returns. Remote work continues to influence housing preferences.</p>
+      <p class="text-blue-500 mt-4">Read more →</p>
+     </div>
+    </a>
+   </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+     <div>
+      <h3 class="text-lg font-bold mb-4">Company</h3>
+      <ul>
+       <li><a class="text-gray-400 hover:text-white" href="#">About Us</a></li>
+       <li><a class="text-gray-400 hover:text-white" href="#">Careers</a></li>
+       <li><a class="text-gray-400 hover:text-white" href="#">Press</a></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">Support</h3>
+      <ul>
+       <li><a class="text-gray-400 hover:text-white" href="#">Help Center</a></li>
+       <li><a class="text-gray-400 hover:text-white" href="#">Contact Us</a></li>
+       <li><a class="text-gray-400 hover:text-white" href="#">Safety</a></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">Legal</h3>
+      <ul>
+       <li><a class="text-gray-400 hover:text-white" href="#">Privacy</a></li>
+       <li><a class="text-gray-400 hover:text-white" href="#">Terms</a></li>
+       <li><a class="text-gray-400 hover:text-white" href="#">Cookies</a></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+      <div class="flex space-x-4">
+       <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-facebook-f"></i></a>
+       <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-twitter"></i></a>
+       <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
+ </body>
+</html>
