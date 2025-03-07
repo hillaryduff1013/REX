@@ -1,0 +1,46 @@
+{
+  "vendors": [
+    {
+      "email": "lowend_pm@example.com",
+      "password": "password123",
+      "name": "Low End Property Manager",
+      "company": "Budget Properties",
+      "category": "Property Manager"
+    },
+    {
+      "email": "midend_pm@example.com",
+      "password": "password123",
+      "name": "Mid End Property Manager",
+      "company": "Quality Properties",
+      "category": "Property Manager"
+    },
+    {
+      "email": "highend_pm@example.com",
+      "password": "password123",
+      "name": "High End Property Manager",
+      "company": "Luxury Properties",
+      "category": "Property Manager"
+    },
+    {
+      "email": "lowend_photographer@example.com",
+      "password": "password123",
+      "name": "Low End Photographer",
+      "company": "Budget Photography",
+      "category": "Photographer"
+    },
+    {
+      "email": "midend_photographer@example.com",
+      "password": "password123",
+      "name": "Mid End Photographer",
+      "company": "Quality Photography",
+      "category": "Photographer"
+    },
+    {
+      "email": "highend_photographer@example.com",
+      "password": "password123",
+      "name": "High End Photographer",
+      "company": "Luxury Photography",
+      "category": "Photographer"
+    }
+  ]
+}
