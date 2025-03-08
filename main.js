@@ -1,6 +1,9 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Add console log for debugging
+    console.log('DOM Content Loaded');
+
     // Sign in dropdown functionality
     const signInButton = document.getElementById('sign-in-button');
     const signInDropdown = document.getElementById('signin-dropdown');
@@ -23,8 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const rentingButton = document.getElementById('renting-button');
     const rentingDropdown = document.getElementById('renting-dropdown');
 
+    // Add console log for debugging
+    console.log('Buy Home Button:', buyHomeButton);
+    console.log('Services Section:', servicesSection);
+
     if (buyHomeButton && servicesSection) {
         buyHomeButton.addEventListener('click', function() {
+            console.log('Buy Home Button Clicked');
             hideAllSections();
             servicesSection.classList.remove('hidden');
         });
@@ -67,8 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const rentalPackages = document.getElementById('rental-packages');
     const rentHomePackages = document.getElementById('rent-home-packages');
 
+    // Add console log for debugging
+    console.log('Buy Services Submit:', buyServicesSubmit);
+    console.log('Buy Packages:', buyPackages);
+
     if (buyServicesSubmit && buyPackages) {
         buyServicesSubmit.addEventListener('click', function() {
+            console.log('Buy Services Submit Clicked');
             buyPackages.classList.remove('hidden');
         });
     }
@@ -92,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function hideAllSections() {
+        console.log('Hiding all sections');
         const sections = [servicesSection, sellServicesSection, rentalServicesSection, rentHomeServicesSection];
         sections.forEach(section => {
             if (section) {
